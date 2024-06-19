@@ -17,6 +17,29 @@
   --heading-color: #212b36;
   --primary-color: #3056d3;
   --white: #ffffff;
+  --bg-color: #000000;
+  --bg-pattern: radial-gradient(#ffffff33 1px, #00091d 1px);
+  --bg-size: 20px 20px;
+}
+
+.bg-grid {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.bg-grid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-color);
+  background-image: var(--bg-pattern);
+  background-size: var(--bg-size);
+  z-index: -2;
 }
 
 body {
@@ -506,9 +529,24 @@ p {
 
 /* ===== Hero CSS ===== */
 .ud-hero {
-  background: var(--primary-color);
+  position: relative;
   padding-top: 180px;
+  overflow: hidden;
 }
+
+.ud-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-color);
+  background-image: var(--bg-pattern);
+  background-size: var(--bg-size);
+  z-index: -2;
+}
+
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .ud-hero {
@@ -785,7 +823,6 @@ p {
 
 /* ===== About CSS ===== */
 .ud-about {
-  background: #f3f4fe;
   padding: 120px 0;
 }
 
@@ -796,7 +833,7 @@ p {
 }
 
 .ud-about-wrapper {
-  background: var(--white);
+  position: relative;
   border: 1px solid rgba(0, 0, 0, 0.08);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -804,6 +841,18 @@ p {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  overflow: hidden;
+}
+
+.ud-about-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(125% 125% at 50% 10%, #000 40%, #63e 100%);
+  z-index: -1;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
@@ -814,6 +863,8 @@ p {
 
 .ud-about-content-wrapper {
   padding: 70px;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 767px) {
@@ -847,6 +898,7 @@ p {
   font-size: 36px;
   line-height: 45px;
   margin-bottom: 30px;
+  color: #fff;
 }
 
 @media (max-width: 767px) {
@@ -860,20 +912,42 @@ p {
   font-size: 16px;
   line-height: 28px;
   margin-bottom: 40px;
+  color: #fff;
+}
+
+.ud-about-content .ud-main-btn {
+  background: #fff;
+  color: #000;
 }
 
 .ud-about-content .ud-main-btn:hover {
-  background: #2748b4;
+  background: #f0f0f0;
   -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
-  .ud-about-image {
-    text-align: center;
-  }
+.ud-about-image {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.ud-about-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: none;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+  .ud-about-image {
+    margin-top: 30px;
+  }
+}
 /* ===== Pricing CSS ===== */
 .ud-pricing {
   padding-top: 120px;
@@ -1231,30 +1305,21 @@ p {
   height: 170px;
   position: relative;
   margin: 0px auto 25px;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .ud-single-team .ud-team-image {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 
 .ud-single-team .ud-team-image img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50%;
-}
-
-.ud-single-team .shape {
-  position: absolute;
-  z-index: -1;
-}
-
-.ud-single-team .shape.shape-1 {
-  top: 0;
-  left: 0;
-}
-
-.ud-single-team .shape.shape-2 {
-  bottom: 0;
-  right: 0;
 }
 
 .ud-single-team .ud-team-info {
@@ -1276,29 +1341,17 @@ p {
 }
 
 .ud-single-team .ud-team-socials {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .ud-single-team .ud-team-socials a {
   width: 32px;
   height: 32px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin: 0px 10px;
   color: #cdced6;
 }
@@ -2601,6 +2654,13 @@ p {
 .ud-404-links a:hover {
   background: var(--heading-color);
   color: var(--white);
+}
+
+.team-member img {
+  width: 150px; /* Adjust the size as needed */
+  height: 150px; /* Adjust the size as needed */
+  border-radius: 50%; /* This creates the circular shape */
+  object-fit: cover; /* This ensures the image fills the circle */
 }
 
 @media (max-width: 767px) {
